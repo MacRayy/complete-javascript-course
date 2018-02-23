@@ -12,22 +12,40 @@ GAME RULES:
 let scores = [0, 0]
 let roundScore = 0
 let activePlayer = 0
+const diceDom = document.querySelector('.dice')
+const currentZero = document.getElementById('current-0')
+const currentOne = document.getElementById('current-1')
+const playerZero = document.querySelector('.player-0-panel')
+const playerOne = document.querySelector('.player-1-panel')
 
-document.querySelector('.dice').style.display = 'none'
 document.getElementById('score-0').textContent = 0
 document.getElementById('score-1').textContent = 0
-document.getElementById('current-0').textContent = 0
-document.getElementById('current-1').textContent = 0
+
+diceDom.style.display = 'none'
+currentZero.textContent = 0
+currentOne.textContent = 0
+playerZero.classList.add('active')
 
 document.querySelector('.btn-roll').addEventListener ('click', function () {
 	let dice = Math.floor(Math.random() * 6) + 1
-	let diceDom = document.querySelector('.dice')
 
 	diceDom.style.display = 'block'
 	diceDom.src = 'dice-' + dice + '.png'
+
+	if (dice !== 1) {
+		roundScore += dice
+		document.querySelector('#current-' + activePlayer).textContent = roundScore
+	} else {
+		activePlayer === 0 ? activePlayer = 1 : activePlayer = 0
+		roundScore = 0
+		currentZero.textContent = 0
+		currentOne.textContent = 0
+		playerZero.classList.toggle('active')
+		playerOne.classList.toggle('active')
+		diceDom.style.display = 'none'
+	}
 })
 
 
 
 
-// document.querySelector('#current-' + activePlayer).textContent = dice
