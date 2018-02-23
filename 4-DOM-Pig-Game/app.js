@@ -9,6 +9,8 @@ GAME RULES:
 
 */
 
+let gamePlaying = false
+
 let scores = [0, 0]
 let roundScore = 0
 let activePlayer = 0
@@ -51,36 +53,41 @@ const init = function () {
 	playerZero.classList.remove('active')
 	playerOne.classList.remove('active')
 	playerZero.classList.add('active')
+	gamePlaying = true
 }
 
 // GAME LOGIC
 roll.addEventListener ('click', function () {
-	let dice = Math.floor(Math.random() * 6) + 1
+	if (gamePlaying) {
+		let dice = Math.floor(Math.random() * 6) + 1
 
-	diceDom.style.display = 'block'
-	diceDom.src = 'dice-' + dice + '.png'
+		diceDom.style.display = 'block'
+		diceDom.src = 'dice-' + dice + '.png'
 
-	if (dice !== 1) {
-		roundScore += dice
-		document.querySelector('#current-' + activePlayer).textContent = roundScore
-	} else {
-		nextPlayer()
+		if (dice !== 1) {
+			roundScore += dice
+			document.querySelector('#current-' + activePlayer).textContent = roundScore
+		} else {
+			nextPlayer()
+		}
 	}
 })
 
 hold.addEventListener('click', function() {
-	scores[activePlayer] += roundScore
-	document.getElementById('score-' + activePlayer).textContent = scores[activePlayer]
+	if (gamePlaying) {
+		scores[activePlayer] += roundScore
+		document.getElementById('score-' + activePlayer).textContent = scores[activePlayer]
 
-	if (scores[activePlayer] >= 10) {
-		document.getElementById('name-' + activePlayer).textContent = 'Winner!'
-		diceDom.style.display = 'none'
-		document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active')
-		document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner')
-	} else {
-		nextPlayer()
+		if (scores[activePlayer] >= 10) {
+			document.getElementById('name-' + activePlayer).textContent = 'Winner!'
+			diceDom.style.display = 'none'
+			document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active')
+			document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner')
+			gamePlaying = false
+		} else {
+			nextPlayer()
+		}
 	}
-
 })
 
 newGame.addEventListener('click', init)
