@@ -17,16 +17,44 @@ const currentZero = document.getElementById('current-0')
 const currentOne = document.getElementById('current-1')
 const playerZero = document.querySelector('.player-0-panel')
 const playerOne = document.querySelector('.player-1-panel')
+const playerNameZero = document.getElementById('name-0')
+const playerNameOne = document.getElementById('name-1')
+const ScoreZero = document.getElementById('score-0')
+const ScoreOne = document.getElementById('score-1')
+const roll = document.querySelector('.btn-roll')
+const hold = document.querySelector('.btn-hold')
+const newGame = document.querySelector('.btn-new')
 
-document.getElementById('score-0').textContent = 0
-document.getElementById('score-1').textContent = 0
+const nextPlayer = function () {
+	activePlayer === 0 ? activePlayer = 1 : activePlayer = 0
+	roundScore = 0
+	currentZero.textContent = 0
+	currentOne.textContent = 0
+	playerZero.classList.toggle('active')
+	playerOne.classList.toggle('active')
+	diceDom.style.display = 'none'
+}
 
-diceDom.style.display = 'none'
-currentZero.textContent = 0
-currentOne.textContent = 0
-playerZero.classList.add('active')
+const init = function () {
+	scores = [0, 0]
+	roundScore = 0
+	activePlayer = 0
+	ScoreZero.textContent = 0
+	ScoreOne.textContent = 0
+	diceDom.style.display = 'none'
+	currentZero.textContent = 0
+	currentOne.textContent = 0
+	playerNameZero.textContent = 'Player 1'
+	playerNameOne.textContent = 'Player 2'
+	playerZero.classList.remove('winner')
+	playerOne.classList.remove('winner')
+	playerZero.classList.remove('active')
+	playerOne.classList.remove('active')
+	playerZero.classList.add('active')
+}
 
-document.querySelector('.btn-roll').addEventListener ('click', function () {
+// GAME LOGIC
+roll.addEventListener ('click', function () {
 	let dice = Math.floor(Math.random() * 6) + 1
 
 	diceDom.style.display = 'block'
@@ -36,16 +64,26 @@ document.querySelector('.btn-roll').addEventListener ('click', function () {
 		roundScore += dice
 		document.querySelector('#current-' + activePlayer).textContent = roundScore
 	} else {
-		activePlayer === 0 ? activePlayer = 1 : activePlayer = 0
-		roundScore = 0
-		currentZero.textContent = 0
-		currentOne.textContent = 0
-		playerZero.classList.toggle('active')
-		playerOne.classList.toggle('active')
-		diceDom.style.display = 'none'
+		nextPlayer()
 	}
 })
 
+hold.addEventListener('click', function() {
+	scores[activePlayer] += roundScore
+	document.getElementById('score-' + activePlayer).textContent = scores[activePlayer]
 
+	if (scores[activePlayer] >= 10) {
+		document.getElementById('name-' + activePlayer).textContent = 'Winner!'
+		diceDom.style.display = 'none'
+		document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active')
+		document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner')
+	} else {
+		nextPlayer()
+	}
 
+})
 
+newGame.addEventListener('click', init)
+
+// START GAME
+init()
