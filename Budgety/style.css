@@ -1,3 +1,15 @@
+:root {
+  --color-green: #20D1AC;
+  --color-red: #FF5049;
+  --color-red-light: #FFDAD9;
+
+  --color-white: #fff;
+  --color-off-white-light: #f7f7f7;
+  --color-off-white: #e7e7e7;
+
+  --color-grey: #555;
+}
+
 /**********************************************
 *** GENERAL
 **********************************************/
@@ -15,7 +27,7 @@
 }
 
 body {
-  color: #555;
+  color: var(--color-grey);
   font-family: Open Sans;
   font-size: 16px;
   font-weight: 400;
@@ -27,10 +39,10 @@ body {
   float: right;
 }
 .red {
-  color: #FF5049 !important;
+  color: var(--color-red) !important;
 }
 .red-focus:focus {
-  border: 1px solid #FF5049 !important;
+  border: 1px solid var(--color-red) !important;
 }
 
 /**********************************************
@@ -46,7 +58,7 @@ body {
 }
 
 .budget {
-  color: #fff;
+  color: var(--color-white);
   left: 50%;
   position: absolute;
   top: 50%;
@@ -76,12 +88,12 @@ body {
 }
 
 .budget__income {
-  background-color: #20D1Ac;
+  background-color: var(--color-green);
   margin-bottom: 10px;
 }
 
 .budget__expenses {
-  background-color: #FF5049;
+  background-color: var(--color-red);
 }
 
 .budget__income--text,
@@ -120,8 +132,8 @@ body {
 
 /***** FORM *****/
 .add {
-  background-color: #f7f7f7;
-  border-bottom: 1px solid #e7e7e7;
+  background-color: var(--color-off-white-light);
+  border-bottom: 1px solid var(--color-off-white);
   padding: 14px;
 }
 
@@ -131,8 +143,8 @@ body {
 }
 
 .add__type {
-  background-color: #fff;
-  border: 1px solid #e7e7e7;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-off-white);
   color: inherit;
   font-size: 18px;
   font-weight: 300;
@@ -144,9 +156,9 @@ body {
 
 .add__description,
 .add__value {
-  background-color: #fff;
+  background-color: var(--color-white);
   border-radius: 5px;
-  border: 1px solid #e7e7e7;
+  border: 1px solid var(--color-off-white);
   color: inherit;
   font-family: inherit;
   font-size: 14px;
@@ -165,7 +177,7 @@ body {
 .add__btn {
   background: none;
   border: none;
-  color: #20D1Ac;
+  color: var(--color-green);
   cursor: pointer;
   display: inline-block;
   font-size: 35px;
@@ -181,7 +193,7 @@ body {
 .add__type:focus,
 .add__description:focus,
 .add__value:focus {
-  border: 1px solid #20D1Ac;
+  border: 1px solid var(--color-green);
   outline: none;
 }
 
@@ -214,22 +226,22 @@ h2 {
 }
 
 .icome__title {
-  color: #20D1AC;
+  color: var(--color-green);
 }
 .expenses__title {
-  color: #FF5049;
+  color: var(--color-red);
 }
 
 .item {
-  border-bottom: 1px solid #e7e7e7;
+  border-bottom: 1px solid var(--color-off-white);
   padding: 13px;
 }
 
 .item:first-child {
-  border-top: 1px solid #e7e7e7;
+  border-top: 1px solid var(--color-off-white);
 }
 .item:nth-child(even) {
-  background-color: #f7f7f7;
+  background-color: var(--color-off-white-light);
 }
 
 .item__description {
@@ -242,7 +254,7 @@ h2 {
 }
 
 .item__percentage {
-  background-color: #FFDAD9;
+  background-color: var(--color-red-light);
   border-radius: 3px;
   float: left;
   font-size: 11px;
@@ -255,13 +267,13 @@ h2 {
 
 .income .item__value,
 .income .item__delete--btn {
-  color: #20D1ac;
+  color: var(--color-green);
 }
 
 .expenses .item__value,
 .expenses .item__percentage,
 .expenses .item__delete--btn {
-  color: #FF5049;
+  color: var(--color-red);
 }
 
 
@@ -299,8 +311,8 @@ h2 {
 
 
 .unpaid {
-  background-color: #FFDAD9 !important;
-  color: #FF5049;
+  background-color: var(--color-red-light) !important;
+  color: var(--color-red);
   cursor: pointer;
 
 }
