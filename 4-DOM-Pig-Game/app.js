@@ -16,6 +16,7 @@ let roundScore = 0
 let activePlayer = 0
 let dice = 0
 let lastDices = []
+let winScore = 100
 
 const diceDom = document.querySelector('.dice')
 const currentZero = document.getElementById('current-0')
@@ -29,6 +30,8 @@ const ScoreOne = document.getElementById('score-1')
 const roll = document.querySelector('.btn-roll')
 const hold = document.querySelector('.btn-hold')
 const newGame = document.querySelector('.btn-new')
+const scoreInput = document.querySelector('.win-score')
+const scoreInputButton = document.querySelector('.btn-win-score')
 
 const nextPlayer = function () {
 	activePlayer === 0 ? activePlayer = 1 : activePlayer = 0
@@ -59,13 +62,16 @@ const init = function () {
 	gamePlaying = true
 }
 
+// SET WINSCORE
+scoreInputButton.addEventListener('click', function () {
+	winScore = scoreInput.value
+})
+
 // GAME LOGIC
 roll.addEventListener ('click', function () {
 	if (gamePlaying) {
 		dice = Math.floor(Math.random() * 6) + 1
-		console.log(dice);
 		lastDices.push(dice)
-		console.log(lastDices[lastDices.length - 1], lastDices[lastDices.length - 2]);
 
 		diceDom.style.display = 'block'
 		diceDom.src = 'dice-' + dice + '.png'
@@ -92,7 +98,7 @@ hold.addEventListener('click', function() {
 		scores[activePlayer] += roundScore
 		document.getElementById('score-' + activePlayer).textContent = scores[activePlayer]
 
-		if (scores[activePlayer] >= 100) {
+		if (scores[activePlayer] >= winScore) {
 			document.getElementById('name-' + activePlayer).textContent = 'Winner!'
 			diceDom.style.display = 'none'
 			document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active')
