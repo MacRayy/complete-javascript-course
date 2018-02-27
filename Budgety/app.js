@@ -4,6 +4,11 @@ import UIController from './view.js'
 import budgetController from './logic.js'
 
 const controller = function (budgetCtrl, UICtrl) {
+		const init = () => {
+			console.log('start')
+			setupEventListeners()
+		}
+
 	const setupEventListeners = () => {
 		const DOM = UICtrl.DOMStrings
 
@@ -22,14 +27,10 @@ const controller = function (budgetCtrl, UICtrl) {
 	}
 
 	return {
-		init: () => {
-			console.log('start')
-			setupEventListeners()
-		}
+		init
 	}
 }
 
-controller(budgetController, UIController)
-
 // START APP
-controller.init()
+controller(budgetController, UIController).init()
+
