@@ -3,17 +3,21 @@
 import UIController from './view.js'
 import budgetController from './logic.js'
 
-const controller = (function (budgetCtrl, UICtrl) {
+const controller = function (budgetCtrl, UICtrl) {
+	const DOM = UICtrl.DOMStrings
+
 	const ctrlAddItem = () => {
-		console.log('alma')
+		const input = UICtrl.getInput()
+		console.log(input)
 	}
 
-	document.querySelector('.add__btn').addEventListener('click', ctrlAddItem)
+	document.querySelector(DOM.addBtn).addEventListener('click', ctrlAddItem)
 
 	document.addEventListener('keypress', (event) => {
 		if (event.keyCode === 13 || event.which === 13) {
 			ctrlAddItem()
 		}
 	})
+}
 
-})(budgetController, UIController)
+controller(budgetController, UIController)
