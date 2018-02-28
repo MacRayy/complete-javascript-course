@@ -5,7 +5,7 @@ import budgetController from './logic.js'
 
 const controller = function (budgetCtrl, UICtrl) {
 	const init = () => {
-		console.log('start')
+		console.info('start')
 		setupEventListeners()
 	}
 
@@ -31,6 +31,7 @@ const controller = function (budgetCtrl, UICtrl) {
 		console.log(budgetCtrl.budgetData)
 
 		// 3. Add the item to the UI
+		UICtrl.addListItem(newItem, input.type)
 
 		// 4. Calculate the budget
 
