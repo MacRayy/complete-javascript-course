@@ -50,10 +50,21 @@ const UIController = (function () {
 		document.querySelector(element).insertAdjacentHTML('beforeend', html)
 	}
 
+	const clearFields = () => {
+		let fields = ''
+		let fieldsArray = []
+		fields = document.querySelectorAll(DOMStrings.inputDescription + ', ' + DOMStrings.inputValue)
+		fieldsArray = Array.from(fields)
+		// fieldsArray = Array.prototype.slice.call(fields)
+		fieldsArray.forEach(node => node.value = '')
+		fieldsArray[0].focus()
+	}
+
 	return {
 		DOMStrings,
 		getInput,
-		addListItem
+		addListItem,
+		clearFields
 	}
 
 })()
