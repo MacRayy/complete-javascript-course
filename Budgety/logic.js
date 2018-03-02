@@ -9,7 +9,9 @@ const budgetController = (function () {
 		totals: {
 			exp: 0,
 			inc: 0
-		}
+		},
+		budget: 0,
+		percentage: -1
 	}
 
 	// ES5
@@ -66,9 +68,41 @@ const budgetController = (function () {
 		return newItem
 	}
 
+	const getBudget = () => {
+		return {
+			budget: budgetData.budget,
+			totalInc: budgetData.totals.inc,
+			totalExp: budgetData.totals.exp,
+			percentage: budgetData.percentage
+		}
+	}
+
+	const calculateBudget = () => {
+		// calculate total income and expenses
+		calculateTotal('inc')
+		calculateTotal('exp')
+
+		// calculate budget
+		budgetData.budget = budgetData.totals.inc - budgetData.totals.exp
+
+		// calculate % of total income that spent
+		if (budgetData.totals.inc > 0) {
+			budgetData.percentage = Math.round((budgetData.totals.exp / budgetData.totals.inc) * 100)
+		} else {
+			budgetData.percentage = -1
+		}
+	}
+
+	const calculateTotal = (type) => {
+		let sum = budgetData.allItems[type].reduce((prev, curr) => prev + curr.value, 0)
+		budgetData.totals[type] = sum
+	}
+
 	return {
+		budgetData,
 		addItem,
-		budgetData
+		calculateBudget,
+		getBudget
 	}
 })()
 

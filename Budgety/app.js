@@ -4,6 +4,8 @@ import UIController from './view.js'
 import budgetController from './logic.js'
 
 const controller = function (budgetCtrl, UICtrl) {
+	let budget = {}
+
 	const init = () => {
 		console.info('start')
 		setupEventListeners()
@@ -23,11 +25,13 @@ const controller = function (budgetCtrl, UICtrl) {
 
 	const updateBudget = () => {
 		// 1. Calculate the budget
+		budgetCtrl.calculateBudget()
 
 		// 2. Retrn the budget
+		budget = budgetCtrl.getBudget()
 
 		// 3. Display the budget on the UI
-
+		console.log(budget)
 	}
 
 	const ctrlAddItem = () => {
@@ -46,6 +50,8 @@ const controller = function (budgetCtrl, UICtrl) {
 
 			// 5. Calvulate and update budget
 			updateBudget()
+
+			// console.log(budgetCtrl.budgetData)
 		}
 	}
 
