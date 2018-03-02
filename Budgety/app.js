@@ -21,20 +21,32 @@ const controller = function (budgetCtrl, UICtrl) {
 		})
 	}
 
+	const updateBudget = () => {
+		// 1. Calculate the budget
+
+		// 2. Retrn the budget
+
+		// 3. Display the budget on the UI
+
+	}
+
 	const ctrlAddItem = () => {
 		// 1. Get the filed input data
 		const input = UICtrl.getInput()
 
-		// 2. Add the item to the budget controller
-		const newItem = budgetCtrl.addItem(input.type, input.description, input.value)
+		if (input.description !== '' && !isNaN(input.value) && input.value > 0) {
+			// 2. Add the item to the budget controller
+			const newItem = budgetCtrl.addItem(input.type, input.description, input.value)
 
-		// 3. Add the item to the UI
-		UICtrl.addListItem(newItem, input.type)
-		UICtrl.clearFields()
+			// 3. Add the item to the UI
+			UICtrl.addListItem(newItem, input.type)
 
-		// 4. Calculate the budget
+			// 4. Clear the fields
+			UICtrl.clearFields()
 
-		// 5. Display the budget on the UI
+			// 5. Calvulate and update budget
+			updateBudget()
+		}
 	}
 
 	return {

@@ -14,7 +14,7 @@ const UIController = (function () {
 		return {
 			type: document.querySelector(DOMStrings.inputType).value, //will be 'inc' or 'exp'
 			description: document.querySelector(DOMStrings.inputDescription).value,
-			value: document.querySelector(DOMStrings.inputValue).value
+			value: parseFloat(document.querySelector(DOMStrings.inputValue).value)
 		}
 	}
 
