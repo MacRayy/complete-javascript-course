@@ -4,10 +4,16 @@ import UIController from './view.js'
 import budgetController from './logic.js'
 
 const controller = function (budgetCtrl, UICtrl) {
-	let budget = {}
+	let budget = {
+		budget: 0,
+		totalInc: 0,
+		totalExp: 0,
+		percentage: -1
+	}
 
 	const init = () => {
 		console.info('start')
+		UICtrl.displayBudget(budget)
 		setupEventListeners()
 	}
 
@@ -31,7 +37,7 @@ const controller = function (budgetCtrl, UICtrl) {
 		budget = budgetCtrl.getBudget()
 
 		// 3. Display the budget on the UI
-		console.log(budget)
+		UICtrl.displayBudget(budget)
 	}
 
 	const ctrlAddItem = () => {
