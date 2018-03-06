@@ -27,6 +27,8 @@ const controller = function (budgetCtrl, UICtrl) {
 				ctrlAddItem()
 			}
 		})
+
+		document.querySelector(DOM.container).addEventListener('click', ctrlDeleteItem)
 	}
 
 	const updateBudget = () => {
@@ -58,6 +60,26 @@ const controller = function (budgetCtrl, UICtrl) {
 			updateBudget()
 
 			// console.log(budgetCtrl.budgetData)
+		}
+	}
+
+	const ctrlDeleteItem = (event) => {
+		let itemID = event.target.parentNode.parentNode.parentNode.parentNode.id
+		let splitID = []
+		let type = ''
+		let ID = ''
+
+		if (itemID) {
+			splitID = itemID.split('-')
+			type = splitID[0]
+			ID = splitID[1]
+
+console.log(splitID);
+			// 1.delete the item from the data structure
+
+			// 2. delete the item from UI
+
+			// 3. update the UI with the new budget
 		}
 	}
 

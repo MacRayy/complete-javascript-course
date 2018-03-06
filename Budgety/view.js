@@ -11,7 +11,8 @@ const UIController = (function () {
 		budgetLabel: '.budget__value',
 		incomeLabel: '.budget__income--value',
 		expensesLabel: '.budget__expenses--value',
-		percentageLabel: '.budget__expenses--percentage'
+		percentageLabel: '.budget__expenses--percentage',
+		container: '.container'
 	}
 
 	const getInput = () => {
@@ -28,7 +29,7 @@ const UIController = (function () {
 
 		if (type === 'inc') {
 			element = DOMStrings.incomeContainer
-			html = `<div class="item clearfix" id="income-${obj.id}">
+			html = `<div class="item clearfix" id="inc-${obj.id}">
 								<div class="item__description">${obj.description}</div>
 								<div class="right clearfix">
 									<div class="item__value">${obj.value}</div>
@@ -39,7 +40,7 @@ const UIController = (function () {
 							</div>`
 		} else if (type === 'exp') {
 			element = DOMStrings.expensesContainer
-			html = `<div class="item clearfix" id="expense-${obj.id}">
+			html = `<div class="item clearfix" id="exp-${obj.id}">
 								<div class="item__description">${obj.description}</div>
 								<div class="right clearfix">
 									<div class="item__value">${obj.value}</div>
