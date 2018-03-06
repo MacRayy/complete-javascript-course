@@ -72,10 +72,10 @@ const controller = function (budgetCtrl, UICtrl) {
 		if (itemID) {
 			splitID = itemID.split('-')
 			type = splitID[0]
-			ID = splitID[1]
+			ID = parseInt(splitID[1])
 
-console.log(splitID);
 			// 1.delete the item from the data structure
+			budgetCtrl.deleteItem(type, ID)
 
 			// 2. delete the item from UI
 

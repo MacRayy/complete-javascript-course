@@ -77,6 +77,21 @@ const budgetController = (function () {
 		}
 	}
 
+	const deleteItem = (type, id) => {
+		let ids = []
+		let index = 0
+
+		ids = budgetData.allItems[type].map( current => current.id)
+
+		index = ids.indexOf(id)
+
+		if (index !== -1) {
+			budgetData.allItems[type].splice(index, 1)
+		}
+
+		console.log(budgetData);
+	}
+
 	const calculateBudget = () => {
 		// calculate total income and expenses
 		calculateTotal('inc')
@@ -102,7 +117,8 @@ const budgetController = (function () {
 		budgetData,
 		addItem,
 		calculateBudget,
-		getBudget
+		getBudget,
+		deleteItem
 	}
 })()
 
