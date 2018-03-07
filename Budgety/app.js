@@ -78,8 +78,10 @@ const controller = function (budgetCtrl, UICtrl) {
 			budgetCtrl.deleteItem(type, ID)
 
 			// 2. delete the item from UI
+			UICtrl.deleteListItem(itemID)
 
 			// 3. update the UI with the new budget
+			updateBudget()
 		}
 	}
 

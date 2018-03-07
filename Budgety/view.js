@@ -55,6 +55,11 @@ const UIController = (function () {
 		document.querySelector(element).insertAdjacentHTML('beforeend', html)
 	}
 
+	const deleteListItem = (selectorID) => {
+		let el = document.getElementById(selectorID)
+		el.parentNode.removeChild(el)
+	}
+
 	const clearFields = () => {
 		let fields = ''
 		let fieldsArray = []
@@ -82,6 +87,7 @@ const UIController = (function () {
 		getInput,
 		addListItem,
 		clearFields,
+		deleteListItem,
 		displayBudget
 	}
 
