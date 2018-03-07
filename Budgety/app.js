@@ -48,9 +48,9 @@ const controller = function (budgetCtrl, UICtrl) {
 
 		// 2. Read percentages from budget controller
 		let percentages = budgetCtrl.getPercentages()
-		console.log(percentages)
 
 		// 3. Update UI
+		UICtrl.displayPercentages(percentages)
 	}
 
 	const ctrlAddItem = () => {
