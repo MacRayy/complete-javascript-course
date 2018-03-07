@@ -33,6 +33,19 @@ const budgetController = (function () {
 			this.id = id
 			this.description = description
 			this.value = value
+			this.percentage = -1
+		}
+
+		calcPercentage (totalIncome) {
+			if (totalIncome > 0) {
+				this.percentage = Math.round((this.value / totalIncome) * 100)
+			} else {
+				this.percentage = -1
+			}
+		}
+
+		getPercentage () {
+			return this.percentage
 		}
 	}
 
@@ -89,7 +102,7 @@ const budgetController = (function () {
 			budgetData.allItems[type].splice(index, 1)
 		}
 
-		console.log(budgetData);
+		console.log(budgetData)
 	}
 
 	const calculateBudget = () => {
@@ -108,6 +121,10 @@ const budgetController = (function () {
 		}
 	}
 
+	const calculatePercentages = () => budgetData.allItems.exp.forEach(item => item.calcPercentage(budgetData.totals.inc))
+
+	const getPercentages = () => budgetData.allItems.exp.map(item => item.getPercentage())
+
 	const calculateTotal = (type) => {
 		let sum = budgetData.allItems[type].reduce((prev, curr) => prev + curr.value, 0)
 		budgetData.totals[type] = sum
@@ -118,6 +135,8 @@ const budgetController = (function () {
 		addItem,
 		calculateBudget,
 		getBudget,
+		calculatePercentages,
+		getPercentages,
 		deleteItem
 	}
 })()

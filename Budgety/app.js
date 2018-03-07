@@ -42,6 +42,17 @@ const controller = function (budgetCtrl, UICtrl) {
 		UICtrl.displayBudget(budget)
 	}
 
+	const updatePercentages = () => {
+		// 1. Calculate the percentages
+		budgetCtrl.calculatePercentages()
+
+		// 2. Read percentages from budget controller
+		let percentages = budgetCtrl.getPercentages()
+		console.log(percentages)
+
+		// 3. Update UI
+	}
+
 	const ctrlAddItem = () => {
 		// 1. Get the filed input data
 		const input = UICtrl.getInput()
@@ -58,6 +69,9 @@ const controller = function (budgetCtrl, UICtrl) {
 
 			// 5. Calvulate and update budget
 			updateBudget()
+
+			// 6. Calculate and update percentaged
+			updatePercentages()
 
 			// console.log(budgetCtrl.budgetData)
 		}
@@ -82,6 +96,9 @@ const controller = function (budgetCtrl, UICtrl) {
 
 			// 3. update the UI with the new budget
 			updateBudget()
+
+			// 4. Calculate and update percentaged
+			updatePercentages()
 		}
 	}
 
