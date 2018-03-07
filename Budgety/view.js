@@ -33,7 +33,7 @@ const UIController = (function () {
 			html = `<div class="item clearfix" id="inc-${obj.id}">
 								<div class="item__description">${obj.description}</div>
 								<div class="right clearfix">
-									<div class="item__value">${obj.value}</div>
+									<div class="item__value">${formatNumber(obj.value, type)}</div>
 									<div class="item__delete">
 										<button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button>
 									</div>
@@ -44,7 +44,7 @@ const UIController = (function () {
 			html = `<div class="item clearfix" id="exp-${obj.id}">
 								<div class="item__description">${obj.description}</div>
 								<div class="right clearfix">
-									<div class="item__value">${obj.value}</div>
+									<div class="item__value">${formatNumber(obj.value, type)}</div>
 									<div class="item__percentage">21%</div>
 									<div class="item__delete">
 										<button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button>
@@ -72,7 +72,10 @@ const UIController = (function () {
 	}
 
 	const displayBudget = (obj) => {
-		document.querySelector(DOMStrings.budgetLabel).textContent = obj.budget
+		let type = ''
+		type = obj.budget > 0 ? type = 'inc' : type = 'exp'
+
+		document.querySelector(DOMStrings.budgetLabel).textContent = formatNumber(obj.budget, type)
 		document.querySelector(DOMStrings.incomeLabel).textContent = obj.totalInc
 		document.querySelector(DOMStrings.expensesLabel).textContent = obj.totalExp
 
@@ -92,6 +95,26 @@ const UIController = (function () {
 				item.textContent = '---'
 			}
 		})
+	}
+
+	const formatNumber = (num, type) => {
+		let numSplit = []
+		let int = ''
+		let dec = ''
+
+		num = Math.abs(num)
+		num = num.toFixed(2)
+
+		numSplit = num.split('.')
+
+		int = numSplit[0]
+		if (int.length > 3 ) {
+			int = `${int.substr(0, int.length - 3)},${int.substr(int.length - 3, int.length)}`
+		}
+
+		dec = numSplit[1]
+
+		return `${(type === 'exp' ? '-' : '+')} ${int}.${dec}`
 	}
 
 	return {
