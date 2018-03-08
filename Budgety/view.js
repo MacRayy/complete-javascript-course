@@ -6,6 +6,7 @@ const UIController = (function () {
 		inputType: '.add__type',
 		inputDescription: '.add__description',
 		inputValue: '.add__value',
+		inputBtn: '.add__btn',
 		incomeContainer : '.income__list',
 		expensesContainer: '.expenses__list',
 		budgetLabel: '.budget__value',
@@ -106,6 +107,20 @@ const UIController = (function () {
 		document.querySelector(DOMStrings.dateLabel).textContent = `${months[month]} ${year}`
 	}
 
+	const changedType = () => {
+		const fields = [...document.querySelectorAll(
+			DOMStrings.inputType + ',' +
+			DOMStrings.inputDescription + ',' +
+			DOMStrings.inputValue
+		)]
+
+		fields.forEach((field) => {
+			field.classList.toggle('red-focus')
+		})
+
+		document.querySelector(DOMStrings.inputBtn).classList.toggle('red')
+	}
+
 	const formatNumber = (num, type) => {
 		let numSplit = []
 		let int = ''
@@ -134,7 +149,8 @@ const UIController = (function () {
 		deleteListItem,
 		displayBudget,
 		displayPercentages,
-		displayMonth
+		displayMonth,
+		changedType
 	}
 
 })()
