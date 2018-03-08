@@ -13,6 +13,7 @@ const controller = function (budgetCtrl, UICtrl) {
 
 	const init = () => {
 		console.info('start')
+		UICtrl.displayMonth()
 		UICtrl.displayBudget(budget)
 		setupEventListeners()
 	}

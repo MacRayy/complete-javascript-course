@@ -13,7 +13,8 @@ const UIController = (function () {
 		expensesLabel: '.budget__expenses--value',
 		percentageLabel: '.budget__expenses--percentage',
 		container: '.container',
-		expensesPercLabel: '.item__percentage'
+		expensesPercLabel: '.item__percentage',
+		dateLabel: '.budget__title--month'
 	}
 
 	const getInput = () => {
@@ -97,6 +98,14 @@ const UIController = (function () {
 		})
 	}
 
+	const displayMonth = () => {
+		const months = ['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+		const now = new Date()
+		const month = now.getMonth()
+		const year = now.getFullYear()
+		document.querySelector(DOMStrings.dateLabel).textContent = `${months[month]} ${year}`
+	}
+
 	const formatNumber = (num, type) => {
 		let numSplit = []
 		let int = ''
@@ -124,7 +133,8 @@ const UIController = (function () {
 		clearFields,
 		deleteListItem,
 		displayBudget,
-		displayPercentages
+		displayPercentages,
+		displayMonth
 	}
 
 })()
