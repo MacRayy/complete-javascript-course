@@ -108,11 +108,11 @@ const UIController = (function () {
 	}
 
 	const changedType = () => {
-		const fields = [...document.querySelectorAll(
-			DOMStrings.inputType + ',' +
-			DOMStrings.inputDescription + ',' +
-			DOMStrings.inputValue
-		)]
+		const fields = Array.from(document.querySelectorAll(
+			`${DOMStrings.inputType},
+			${DOMStrings.inputDescription},
+			${DOMStrings.inputValue}`
+		))
 
 		fields.forEach((field) => {
 			field.classList.toggle('red-focus')
