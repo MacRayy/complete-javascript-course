@@ -21,3 +21,50 @@ All the report data should be printed to the console.
 HINT: Use some of the ES6 features: classes, subclasses, template strings, default parameters, maps, arrow functions, destructuring, etc.
 
 */
+
+const city = function () {
+	console.log('Welcome to JS-Ville')
+
+	class CommunityItem {
+		constructor (name, buildYear) {
+			this.name = name
+			this.buildYear = buildYear
+		}
+	}
+
+	class Park extends CommunityItem {
+		constructor (name, buildYear, area, treeNumber) {
+			super(name, buildYear)
+			this.name = name
+			this.buildYear = buildYear
+			this.area = area
+			this.treeNumber = treeNumber
+		}
+	}
+
+	class Street extends CommunityItem {
+		constructor (name, buildYear, length, size = 'normal') {
+			super(name, buildYear)
+			this.name = name
+			this.buildYear = buildYear
+			this.length = length
+			this.size = size
+		}
+	}
+
+	const allParks = [new Park('Green Park', 1987, 0.2, 215),
+										new Park('National Park', 1894, 2.9, 3541),
+										new Park('Oak Park', 1953, 0.4, 949)]
+
+	const allStreets = [new Street('Ocean Avenue', 1999, 1.1, 'big'),
+											new Street('Evergreen Street', 2008, 2.7, 'small'),
+											new Street('4th Street', 2015, 0.8),
+											new Street('Sunset Boulevard', 1982, 2.5, 'huge')]
+
+	console.log(allParks)
+	console.log(allStreets)
+
+}
+
+
+city()
