@@ -23,12 +23,16 @@ HINT: Use some of the ES6 features: classes, subclasses, template strings, defau
 */
 
 const city = function () {
-	console.log('Welcome to JS-Ville')
 
 	class CommunityItem {
 		constructor (name, buildYear) {
 			this.name = name
 			this.buildYear = buildYear
+		}
+
+		calcAge () {
+			const now = new Date
+			return now.getFullYear() - this.buildYear
 		}
 	}
 
@@ -39,7 +43,15 @@ const city = function () {
 			this.buildYear = buildYear
 			this.area = area
 			this.treeNumber = treeNumber
+			this.age = this.calcAge()
 		}
+
+		treeDensity () {
+			const treeDensity = Math.round(this.treeNumber / this.area)
+			return `${this.name} has ${treeDensity} tree density`
+		}
+
+
 	}
 
 	class Street extends CommunityItem {
@@ -58,13 +70,38 @@ const city = function () {
 
 	const allStreets = [new Street('Ocean Avenue', 1999, 1.1, 'big'),
 											new Street('Evergreen Street', 2008, 2.7, 'small'),
-											new Street('4th Street', 2015, 0.8),
-											new Street('Sunset Boulevard', 1982, 2.5, 'huge')]
+											new Street('4th Street', 2015, 5.8),
+											new Street('Sunset Boulevard', 1982, 20.5, 'huge')]
 
-	console.log(allParks)
-	console.log(allStreets)
+	const calculateAverage = (comItem, averageOf) => Math.round(comItem.reduce((prev, curr) => prev + curr[averageOf], 0) / comItem.length)
 
+	const thousandTreeParks = () => allParks.filter(park => park.treeNumber >= 1000)
+
+	const calcTotal = (comItem, totalOf) => comItem.reduce((prev, curr) => prev + curr[totalOf], 0)
+
+	const parkStat = () => {
+		console.info('---- PARKS ----')
+		allParks.forEach(park => console.info(park.treeDensity()))
+
+		console.info(`Average park age: ${calculateAverage(allParks, 'age')} years`)
+
+		thousandTreeParks().forEach(park => console.info(`${park.name} has more than 1000 tree`))
+	}
+
+	const streetStat = () => {
+		console.info('---- STREETS ----')
+		console.info(`Average length of streets: ${calculateAverage(allStreets, 'length')} km`)
+		console.info(`Total length of streets are ${calcTotal(allStreets, 'length')} km`)
+
+		allStreets.forEach(street => console.info(`${street.name} is a ${street.size} street`))
+	}
+
+	return {
+		parkStat,
+		streetStat
+	}
 }
 
 
-city()
+city().parkStat()
+city().streetStat()
