@@ -106,3 +106,41 @@ const city = function () {
 
 city().parkStat()
 city().streetStat()
+
+
+const vowelify = (string) => {
+	const vowels = ['a', 'e', 'i', 'o', 'u']
+	let newWord = Array.from(string).filter(letter => letter !== ' ')
+	newWord = newWord.map(letter => {
+		if (vowels.includes(letter)) {
+			letter = ` ${letter}`
+		}
+		return letter
+	})
+	newWord = newWord.join('').replace(/-/g, '')
+	return newWord
+}
+
+vowelify('apple trees')
+vowelify('12-22-33')
+
+const includeString = (string1, string2) => {
+	let included = false
+	let arr1 = Array.from(string1)
+	let arr2 = Array.from(string2)
+	let counter = 0
+	arr1.forEach(letterOne => {
+		arr2.forEach(letterTwo => {
+			if (letterOne === letterTwo) {
+				counter++
+			}
+		})
+	})
+	if (counter === arr2.length) {
+		included = true
+	}
+	return included
+}
+
+console.log(includeString('foxterrier', 'apple'))
+console.log(includeString('foxterrier', 'fox'))
