@@ -17,5 +17,7 @@ test('greeting say hello', (t) => {
 
 test('a + b equals the total', (t) => {
 	t.equal(testApp.sum(2, 2), 4)
+	t.equal(testApp.sum(-1, 1), 0)
+	t.equal(testApp.sum(-1, -1), -2)
 	t.end()
 })
