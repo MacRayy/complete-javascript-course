@@ -1,0 +1,16 @@
+{
+  "name": "testtest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "tape"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "babelify": "^8.0.0",
+    "tape": "^4.9.0"
+  }
+}
