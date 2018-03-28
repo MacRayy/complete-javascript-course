@@ -11,8 +11,15 @@
 
 // sum()
 
+// const fs = require('fs')
+
+// const countLines = () => console.log(fs.readFileSync(process.argv[2], {encoding: 'utf8'}).split('\n').length - 1)
+
+// countLines()
+
+
 const fs = require('fs')
 
-const countLines = () => console.log(fs.readFileSync(process.argv[2], {encoding: 'utf8'}).split('\n').length - 1)
+const countLines = () => fs.readFile(process.argv[2], {encoding: 'utf8'}, (err, data) => (err) ? err : console.log(data.split('\n').length - 1))
 
 countLines()
